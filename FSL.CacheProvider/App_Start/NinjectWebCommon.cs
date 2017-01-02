@@ -62,8 +62,9 @@ namespace FSL.CacheProvider.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ICacheProvider>().To<HttpRuntimeCacheProvider>();
-            kernel.Bind<IAsyncCacheProvider>().To<HttpRuntimeCacheProvider>();
+            kernel.Bind<ICache>().To<HttpRuntimeCache>();
+            kernel.Bind<ICacheProvider>().To<FslCacheProvider>();
+            kernel.Bind<IAsyncCacheProvider>().To<FslCacheProvider>();
         }        
     }
 }

@@ -3,12 +3,16 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace FSL.CacheProvider.Caching
 {
-    public class HttpRuntimeCacheProvider : ICacheProvider, IAsyncCacheProvider
+    public class FslCacheProvider : ICacheProvider, IAsyncCacheProvider
     {
+        public FslCacheProvider(ICache cache)
+        {
+            _cache = cache;
+        }
+
         public T Cache<T>(Expression<Func<T>> func, params object[] keys)
         {
             return Cache(true, GetExpirationDefault(), func, keys);
@@ -46,7 +50,7 @@ namespace FSL.CacheProvider.Caching
 
         public T Cache<T>(bool useCache, DateTime expiration, Expression<Func<T>> func, params object[] keys)
         {
-            if (HttpRuntime.Cache == null || !useCache)
+            if (_cache.IsCacheNull == null || !useCache)
             {
                 return func.Compile()();
             }
@@ -57,7 +61,7 @@ namespace FSL.CacheProvider.Caching
                 return func.Compile()();
             }
 
-            var cacheValue = HttpRuntime.Cache.Get(cacheKey);
+            var cacheValue = _cache.Get(cacheKey);
             if (cacheValue != null)
             {
                 return (T)cacheValue;
@@ -78,7 +82,7 @@ namespace FSL.CacheProvider.Caching
 
             lock (cacheObject)
             {
-                HttpRuntime.Cache.Remove(cacheKey);
+                _cache.Remove(cacheKey);
             }
         }
 
@@ -119,7 +123,7 @@ namespace FSL.CacheProvider.Caching
 
         public async Task<T> CacheAsync<T>(bool useCache, DateTime expiration, Expression<Func<Task<T>>> func, params object[] keys)
         {
-            if (HttpRuntime.Cache == null || !useCache)
+            if (_cache.IsCacheNull || !useCache)
             {
                 return await func.Compile()();
             }
@@ -130,7 +134,7 @@ namespace FSL.CacheProvider.Caching
                 return await func.Compile()();
             }
 
-            var cacheValue = HttpRuntime.Cache.Get(cacheKey);
+            var cacheValue = _cache.Get(cacheKey);
             if (cacheValue != null)
             {
                 return (T)cacheValue;
@@ -167,6 +171,7 @@ namespace FSL.CacheProvider.Caching
 
 
         private static object cacheObject = new object();
+        private readonly ICache _cache;
 
         private void InsertCache(string cacheKey, object data, DateTime expiration)
         {
@@ -174,7 +179,7 @@ namespace FSL.CacheProvider.Caching
 
             lock (cacheObject)
             {
-                HttpRuntime.Cache.Insert(cacheKey, data, null, expiration, TimeSpan.Zero);
+                _cache.Insert(cacheKey, data, expiration, TimeSpan.Zero);
             }
         }
 
