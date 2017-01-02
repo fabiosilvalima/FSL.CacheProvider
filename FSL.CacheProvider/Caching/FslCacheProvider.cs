@@ -3,11 +3,18 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace FSL.CacheProvider.Caching
 {
     public class FslCacheProvider : ICacheProvider, IAsyncCacheProvider
     {
+        public FslCacheProvider()
+            : this(DependencyResolver.Current.GetService<ICache>())
+        {
+
+        }
+
         public FslCacheProvider(ICache cache)
         {
             _cache = cache;
@@ -50,7 +57,7 @@ namespace FSL.CacheProvider.Caching
 
         public T Cache<T>(bool useCache, DateTime expiration, Expression<Func<T>> func, params object[] keys)
         {
-            if (_cache.IsCacheNull == null || !useCache)
+            if (_cache.IsCacheNull || !useCache)
             {
                 return func.Compile()();
             }
