@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/FSL.CacheProvider/bin
+/FSL.CacheProvider/obj/Debug
+/packages
