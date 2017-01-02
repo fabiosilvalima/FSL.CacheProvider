@@ -152,13 +152,11 @@ namespace FSL.CacheProvider.Caching
             if (keys != null)
             {
                 keys.ToList().ForEach(x => cacheKey += (x == null ? "" : "_" + x.ToString()));
-
-                // Se o cacheKey estiver nulo quer dizer que alguma variavel informada esta nulo
-                // Nesse caso deve retornar nulo para nao usar cache
-                if (cacheKey.IsNullOrEmpty())
-                {
-                    return null;
-                }
+                
+                //if (cacheKey.IsNullOrEmpty())
+                //{
+                //    return null;
+                //}
             }
 
             var methodCall = func.Body as MethodCallExpression;
