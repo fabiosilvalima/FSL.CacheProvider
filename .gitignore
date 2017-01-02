@@ -6,3 +6,5 @@
 /FSL.CacheProvider/bin
 /FSL.CacheProvider/obj/Debug
 /packages
+/FSL.CacheProvider/obj/Release
+*.user
