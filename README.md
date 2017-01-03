@@ -10,7 +10,13 @@ The cache provider follows SOLID principles.
 
 > **LIVE DEMO:**
 > 
- [http://codefinal.com/FSL.CacheProvider][4]
+> http://codefinal.com/FSL.CacheProvider
+
+> **FULL ARTICLE:**
+>
+> English: https://fabiosilvalima.net/2017/01/02/cache-provider-in-one-line-of-code/
+>
+> PortuguÃªs: https://fabiosilvalima.com.br/2017/01/02/cache-provider-em-uma-linha-de-codigo/
 
 ---
 
@@ -67,13 +73,6 @@ public async Task<ActionResult> Index(string id = "0")
 }
 ```
 
-The full article:
----
-
-- Article in [english][2]
-- Artigo em [português][3]
-
----------
 
 References:
 ---
@@ -88,6 +87,3 @@ Licence:
 
 
   [1]: http://fabiosilvalima.net
-  [2]: https://fabiosilvalima.net/2017/01/02/cache-provider-in-one-line-of-code/
-  [3]: https://fabiosilvalimabr.wordpress.com/2017/01/02/cache-provider-em-uma-linha-de-codigo/
-  [4]: http://codefinal.com/FSL.CacheProvider
