@@ -6,7 +6,7 @@ In this repository I will share my own Cache Provider implementation to use ever
 
 The cache provider follows SOLID principles.
 
-![enter image description here](https://fabiosilvalima.files.wordpress.com/2017/01/fsl-cache-provider-async.png)
+![enter image description here](https://fabiosilvalima.net/wp-content/uploads/2017/01/fabiosilvalima-cache-provider-em-uma-linha-de-codigo.jpg)
 
 > **LIVE DEMO:**
 > 
@@ -14,9 +14,9 @@ The cache provider follows SOLID principles.
 
 > **FULL ARTICLE:**
 >
-> English: https://fabiosilvalima.net/2017/01/02/cache-provider-in-one-line-of-code/
+> English: https://fabiosilvalima.net/en/cache-provider-one-line-code/
 >
-> Português: https://fabiosilvalima.com.br/2017/01/02/cache-provider-em-uma-linha-de-codigo/
+> Português: https://fabiosilvalima.net/cache-provider-em-uma-linha-de-codigo/
 
 ---
 
